@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#00ffff" />
+  <title>Monument Conservation Analyzer</title>
+
+  <!-- PWA Meta -->
+  <link rel="manifest" href="/static/manifest.json" />
+  <!--<link rel="icon" type="image/png" href="/static/icon-192.png" /> -->
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>🕌 Monument Conservation Analyzer</h1>
+    <p>Upload a monument image to check if conservation is needed.</p>
+
+    <form action="/upload" method="post" enctype="multipart/form-data">
+      <label for="image">Select Monument Image:</label>
+      <input type="file" id="image" name="image" accept="image/*" required />
+      <button type="submit">Analyze</button>
+    </form>
+
+    {% if result %}
+      <div class="result">
+        <h2>Result:</h2>
+        <p>{{ result }}</p>
+      </div>
+    {% endif %}
+  </div>
+
+  <!-- Service Worker Registration -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/static/service-worker.js')
+        .then(reg => console.log('✅ Service Worker registered:', reg))
+        .catch(err => console.error('❌ Service Worker registration failed:', err));
+    }
+  </script>
+</body>
+</html>

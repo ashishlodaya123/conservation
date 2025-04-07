@@ -1,0 +1,9 @@
+{
+    "name": "Monument Conservation Analyzer",
+    "short_name": "ConserveApp",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#00ffff"
+  }
+  
